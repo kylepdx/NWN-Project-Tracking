@@ -1,0 +1,518 @@
+<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.11.1701.1, Culture=neutral, PublicKeyToken=3751622786b357c2" />
+  <pnp:Templates ID="CONTAINER-NWN-Version-1">
+    <pnp:ProvisioningTemplate ID="NWN-Version-1" Version="1" BaseSiteTemplate="BLANKINTERNET#0">
+      <pnp:Lists>
+        <pnp:ListInstance Title="Project Change Orders" Description="" DocumentTemplate="" OnQuickLaunch="true" TemplateType="100" Url="Lists/ProjectChangeOrders" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{34604C2D-EB76-4706-B699-0769ED78DC9D}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectChangeOrders/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+                <FieldRef Name="Project" />
+                <FieldRef Name="Project_x003a_Title" />
+                <FieldRef Name="ApprovedDate" />
+                <FieldRef Name="Description" />
+                <FieldRef Name="Impact" />
+                <FieldRef Name="AdditionalBudget" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Project Tracking}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{403f20f5-f67e-46d7-8404-fc64edea48a3}" SourceID="{ceb63330-baac-4697-b528-b5073d4fb1a7}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" />
+            <Field Type="Lookup" DisplayName="Project:Title" List="{listid:Project Tracking}" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" ShowField="Title" FieldRef="403f20f5-f67e-46d7-8404-fc64edea48a3" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" ID="{93ba4e86-6bc2-4651-ad30-9791717c4182}" SourceID="{ceb63330-baac-4697-b528-b5073d4fb1a7}" StaticName="Project_x003a_Title" Name="Project_x003a_Title" Version="1" />
+            <Field Type="DateTime" DisplayName="ApprovedDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{1e009b0c-eb81-4585-80ae-05833cdb355b}" SourceID="{{listid:Project Change Orders}}" StaticName="ApprovedDate" Name="ApprovedDate" ColName="datetime1" RowOrdinal="0" />
+            <Field Type="Text" DisplayName="Description" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" ID="{6480bb60-ac7b-4a74-ae83-a3a657b289f1}" SourceID="{{listid:Project Change Orders}}" StaticName="Description" Name="Description" ColName="nvarchar3" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="Impact" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{efdaaa97-5466-46b0-abfa-5d7a4b43e31b}" SourceID="{{listid:Project Change Orders}}" StaticName="Impact" Name="Impact" ColName="nvarchar4" RowOrdinal="0">
+              <Default>Budget</Default>
+              <CHOICES>
+                <CHOICE>Budget</CHOICE>
+                <CHOICE>Schedule</CHOICE>
+                <CHOICE>Scope</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Currency" DisplayName="AdditionalBudget" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Decimals="0" LCID="1033" ID="{c1311705-0674-4a4e-9cc7-984855f38042}" SourceID="{{listid:Project Change Orders}}" StaticName="AdditionalBudget" Name="AdditionalBudget" ColName="float1" RowOrdinal="0" />
+          </pnp:Fields>
+          <pnp:FieldDefaults>
+            <pnp:FieldDefault FieldName="Title">N/A</pnp:FieldDefault>
+          </pnp:FieldDefaults>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Project Schedule" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ProjectSchedule" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{77346056-7AAE-46FF-8D7F-E4ACAD41CB31}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectSchedule/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                  <FieldRef Name="EstStartDate" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Edit" />
+                <FieldRef Name="Project" />
+                <FieldRef Name="EstStartDate" />
+                <FieldRef Name="ActualStartDate" />
+                <FieldRef Name="EstEndDate" />
+                <FieldRef Name="ActualEndDate" />
+                <FieldRef Name="Comment" />
+                <FieldRef Name="DisplayOrder" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{749A8E08-B1D7-487F-965D-5689A8BF8A22}" MobileView="TRUE" Type="HTML" DisplayName="Summary" Url="/sites/NWN/Lists/ProjectSchedule/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+                <FieldRef Name="EstStartDate" />
+                <FieldRef Name="EstEndDate" />
+                <FieldRef Name="ActualStartDate" />
+                <FieldRef Name="ActualEndDate" />
+                <FieldRef Name="Comment" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Project Tracking}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{b5e28bec-ced3-4f36-974b-402c0f682de9}" SourceID="{bbd434bb-3d7e-4b99-9873-bfb840300e1c}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" Version="5" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" Group="" />
+            <Field Type="Number" DisplayName="DisplayOrder" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Decimals="0" ID="{169dfe61-a7f7-4376-ad21-6d3b0d5d7895}" SourceID="{{listid:Project Schedule}}" StaticName="DisplayOrder" Name="DisplayOrder" ColName="float1" RowOrdinal="0">
+              <Default>1</Default>
+            </Field>
+            <Field Type="DateTime" DisplayName="EstStartDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{2d110516-2a63-4fb3-bf5d-7700c3665c62}" SourceID="{{listid:Project Schedule}}" StaticName="EstStartDate" Name="EstStartDate" ColName="datetime1" RowOrdinal="0" />
+            <Field Type="DateTime" DisplayName="ActualStartDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{b9fbaaeb-91ae-4e85-9bb4-ebf43e11cc5b}" SourceID="{{listid:Project Schedule}}" StaticName="ActualStartDate" Name="ActualStartDate" ColName="datetime3" RowOrdinal="0" />
+            <Field Type="DateTime" DisplayName="EstEndDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{08c9ea3b-caa6-4a78-b454-891a0df732cf}" SourceID="{{listid:Project Schedule}}" StaticName="EstEndDate" Name="EstEndDate" ColName="datetime2" RowOrdinal="0" />
+            <Field Type="DateTime" DisplayName="ActualEndDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{eb2a6c6a-e4ae-4904-a877-72d9a73a567e}" SourceID="{{listid:Project Schedule}}" StaticName="ActualEndDate" Name="ActualEndDate" ColName="datetime4" RowOrdinal="0" />
+            <Field Type="Text" DisplayName="Comment" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" ID="{c40c4a57-bb9c-4d1b-9c0a-fce0d2659966}" SourceID="{{listid:Project Schedule}}" StaticName="Comment" Name="Comment" ColName="nvarchar3" RowOrdinal="0" />
+          </pnp:Fields>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Project Status" Description="" DocumentTemplate="" OnQuickLaunch="true" TemplateType="100" Url="Lists/ProjectStatus" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{D29859CE-492C-42A2-B9F0-26CD4386DBEE}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectStatus/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Edit" />
+                <FieldRef Name="Project" />
+                <FieldRef Name="KPIScope" />
+                <FieldRef Name="KPIBudget" />
+                <FieldRef Name="KPISchedule" />
+                <FieldRef Name="ScopeComment" />
+                <FieldRef Name="BudgetComment" />
+                <FieldRef Name="ScheduleComment" />
+                <FieldRef Name="Decisions" />
+                <FieldRef Name="Issues" />
+                <FieldRef Name="Accomplishments" />
+                <FieldRef Name="NextSteps" />
+                <FieldRef Name="Project_x003a_Title" />
+                <FieldRef Name="Project_x003a_SAPNum" />
+                <FieldRef Name="TotalBudget" />
+                <FieldRef Name="ActualBudget" />
+                <FieldRef Name="PctBudgetUsed" />
+                <FieldRef Name="ForecastAndActuals" />
+                <FieldRef Name="GeneralComment" />
+                <FieldRef Name="Project_x003a_ID" />
+                <FieldRef Name="ReportPeriod" />
+                <FieldRef Name="ApprovalStatus" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{43B3DF48-8AD6-4F88-8E08-370E9A5D3483}" MobileView="TRUE" Type="HTML" DisplayName="Decisions" Url="/sites/NWN/Lists/ProjectStatus/Decisions.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Decisions" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{6C4D804C-0C15-4F09-9C58-FEE04C7A0BF9}" MobileView="TRUE" Type="HTML" DisplayName="Issues" Url="/sites/NWN/Lists/ProjectStatus/Issues.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Issues" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">1</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{8409EC16-2007-4992-8FE1-8D5F7295EB30}" MobileView="TRUE" Type="HTML" DisplayName="Accomplishments" Url="/sites/NWN/Lists/ProjectStatus/Accomplishments.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Accomplishments" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">1</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{AA5950A9-26D1-404D-AF62-133E6B24FD0B}" MobileView="TRUE" Type="HTML" DisplayName="KPI" Url="/sites/NWN/Lists/ProjectStatus/KPI.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="KPIScope" />
+                <FieldRef Name="KPIBudget" />
+                <FieldRef Name="KPISchedule" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{84946077-5121-481D-8ED0-93258990D2AF}" MobileView="TRUE" Type="HTML" DisplayName="Month" Url="/sites/NWN/Lists/ProjectStatus/Month.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Project_x003a_Title" />
+                <FieldRef Name="KPIScope" />
+                <FieldRef Name="KPIBudget" />
+                <FieldRef Name="KPISchedule" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{17FEC614-2A31-4437-9AA2-DC4900642578}" MobileView="TRUE" Type="HTML" DisplayName="ProjectInfo" Url="/sites/NWN/Lists/ProjectStatus/ProjectInfo.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Project_x003a_Title" />
+                <FieldRef Name="Project_x003a_SAPNum" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Lookup" DisplayName="Report Period" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Report Dates}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{15dc33b4-e137-4e10-8da9-d0c96172c5c6}" SourceID="{c05843d7-6b4b-422c-a2c0-b782befdb6e2}" StaticName="ReportPeriod" Name="ReportPeriod" ColName="int2" RowOrdinal="0" Group="" Version="1" />
+            <Field Type="Choice" DisplayName="ApprovalStatus" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{28c3a76f-5f78-4291-8cec-3698241c27eb}" SourceID="{{listid:Project Status}}" StaticName="ApprovalStatus" Name="ApprovalStatus" ColName="nvarchar11" RowOrdinal="0">
+              <Default>Draft</Default>
+              <CHOICES>
+                <CHOICE>Draft</CHOICE>
+                <CHOICE>Approved</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Project Tracking}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{ce50a5be-2d03-41d9-a831-dcb0622f7d98}" SourceID="{bbd434bb-3d7e-4b99-9873-bfb840300e1c}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" Group="" Version="9" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" />
+            <Field Name="GeneralComment" FromBaseType="FALSE" Type="Note" DisplayName="GeneralComment" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" Sortable="FALSE" ID="{2f3f0612-b56d-41df-9d0b-af5349e08674}" Version="1" StaticName="GeneralComment" SourceID="{{listid:Project Status}}" ColName="ntext6" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="KPIScope" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{afb90634-d4ca-49a3-9e51-057d893c867e}" SourceID="{{listid:Project Status}}" StaticName="KPIScope" Name="KPIScope" ColName="nvarchar3" RowOrdinal="0" Version="1">
+              <Default>Pending</Default>
+              <CHOICES>
+                <CHOICE>Pending</CHOICE>
+                <CHOICE>Green</CHOICE>
+                <CHOICE>Yellow</CHOICE>
+                <CHOICE>Red</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Name="ScopeComment" FromBaseType="FALSE" Type="Note" DisplayName="ScopeComment" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" Sortable="FALSE" ID="{b68b87a4-a8dd-4c5f-a2a4-e2fc05926828}" Version="1" StaticName="ScopeComment" SourceID="{{listid:Project Status}}" ColName="ntext7" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="KPIBudget" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{bb20ac33-9a86-4a7b-9e10-7130a265971c}" SourceID="{{listid:Project Status}}" StaticName="KPIBudget" Name="KPIBudget" ColName="nvarchar4" RowOrdinal="0">
+              <Default>Pending</Default>
+              <CHOICES>
+                <CHOICE>Pending</CHOICE>
+                <CHOICE>Green</CHOICE>
+                <CHOICE>Yellow</CHOICE>
+                <CHOICE>Red</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Name="BudgetComment" FromBaseType="FALSE" Type="Note" DisplayName="BudgetComment" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" Sortable="FALSE" ID="{cfd16fc0-05d7-4b26-8dc1-1642d2f087ad}" Version="1" StaticName="BudgetComment" SourceID="{{listid:Project Status}}" ColName="ntext8" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="KPISchedule" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{624c0e6c-6c4a-4745-af60-e89b040708c7}" SourceID="{{listid:Project Status}}" StaticName="KPISchedule" Name="KPISchedule" ColName="nvarchar5" RowOrdinal="0">
+              <Default>Pending</Default>
+              <CHOICES>
+                <CHOICE>Pending</CHOICE>
+                <CHOICE>Green</CHOICE>
+                <CHOICE>Yellow</CHOICE>
+                <CHOICE>Red</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Name="ScheduleComment" FromBaseType="FALSE" Type="Note" DisplayName="ScheduleComment" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" Sortable="FALSE" ID="{d72dcc5a-cb80-4487-9750-4e6bb53d04e0}" Version="1" StaticName="ScheduleComment" SourceID="{{listid:Project Status}}" ColName="ntext9" RowOrdinal="0" />
+            <Field Type="Note" DisplayName="Decisions" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" Sortable="FALSE" ID="{5714f0eb-032d-4132-bd27-5039757549f4}" SourceID="{{listid:Project Status}}" StaticName="Decisions" Name="Decisions" ColName="ntext2" RowOrdinal="0" RestrictedMode="TRUE" AppendOnly="FALSE" Version="3" />
+            <Field Type="Note" DisplayName="Issues" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" Sortable="FALSE" ID="{5ee90bf0-b0f5-4397-b3d9-9b80a22c03ee}" SourceID="{{listid:Project Status}}" StaticName="Issues" Name="Issues" ColName="ntext3" RowOrdinal="0" RestrictedMode="TRUE" AppendOnly="FALSE" Version="3" />
+            <Field Type="Note" DisplayName="Accomplishments" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" Sortable="FALSE" ID="{f62461c9-96ac-4174-a24d-6aedb30d6cf5}" SourceID="{{listid:Project Status}}" StaticName="Accomplishments" Name="Accomplishments" ColName="ntext4" RowOrdinal="0" RestrictedMode="TRUE" AppendOnly="FALSE" Version="3" />
+            <Field Name="NextSteps" FromBaseType="FALSE" Type="Note" DisplayName="NextSteps" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" Sortable="FALSE" ID="{a33dab3f-9df3-436e-8d2f-89df09c20d4c}" Version="3" StaticName="NextSteps" SourceID="{{listid:Project Status}}" ColName="ntext5" RowOrdinal="0" RestrictedMode="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" />
+            <Field Type="Currency" DisplayName="TotalBudget" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{301368dd-dfb2-4e33-bcdb-5358a9ed088b}" SourceID="{{listid:Project Status}}" StaticName="TotalBudget" Name="TotalBudget" ColName="float1" RowOrdinal="0" />
+            <Field Type="Currency" DisplayName="ActualBudget" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{de01c837-86f2-4ecd-8b74-1dd5493472f3}" SourceID="{{listid:Project Status}}" StaticName="ActualBudget" Name="ActualBudget" ColName="float2" RowOrdinal="0" />
+            <Field Type="Number" DisplayName="PctBudgetUsed" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Min=".00" Max="1.00" Percentage="TRUE" Decimals="0" ID="{bbd56065-4663-4363-ae30-66967e5f5668}" SourceID="{{listid:Project Status}}" StaticName="PctBudgetUsed" Name="PctBudgetUsed" ColName="float3" RowOrdinal="0" />
+            <Field Type="Currency" DisplayName="ForecastAndActuals" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{e57fe762-5dbe-4404-8843-d4f8f143a2e9}" SourceID="{{listid:Project Status}}" StaticName="ForecastAndActuals" Name="ForecastAndActuals" ColName="float4" RowOrdinal="0" />
+            <Field Type="Lookup" DisplayName="Project:Title" List="{listid:Project Tracking}" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" ShowField="Title" FieldRef="ce50a5be-2d03-41d9-a831-dcb0622f7d98" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" ID="{d81672a1-80e8-4d95-baf4-ec1483654170}" SourceID="{bbd434bb-3d7e-4b99-9873-bfb840300e1c}" StaticName="Project_x003a_Title" Name="Project_x003a_Title" Version="9" Group="Custom Columns" />
+            <Field Type="Lookup" DisplayName="Project:SAPNum" List="{listid:Project Tracking}" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" ShowField="SAPNum" FieldRef="ce50a5be-2d03-41d9-a831-dcb0622f7d98" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" ID="{6acef58c-ffa2-4486-af8b-e70d689e8a81}" SourceID="{c05843d7-6b4b-422c-a2c0-b782befdb6e2}" StaticName="Project_x003a_SAPNum" Name="Project_x003a_SAPNum" Version="4" Group="Custom Columns" />
+            <Field Type="Lookup" DisplayName="Project:ID" List="{listid:Project Tracking}" WebId="bbd434bb-3d7e-4b99-9873-bfb840300e1c" ShowField="ID" FieldRef="ce50a5be-2d03-41d9-a831-dcb0622f7d98" ReadOnly="TRUE" UnlimitedLengthInDocumentLibrary="FALSE" ID="{d4511b36-f5b1-4670-9439-da6d4be15eca}" SourceID="{c05843d7-6b4b-422c-a2c0-b782befdb6e2}" StaticName="Project_x003a_ID" Name="Project_x003a_ID" Version="1" />
+          </pnp:Fields>
+          <pnp:FieldDefaults>
+            <pnp:FieldDefault FieldName="Title">N/A</pnp:FieldDefault>
+          </pnp:FieldDefaults>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Project Tracking" Description="" DocumentTemplate="" OnQuickLaunch="true" TemplateType="100" Url="Lists/ProjectTracking" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{F139047E-26FE-4884-9E2F-9E1FB2BFF4C3}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectTracking/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Edit" />
+                <FieldRef Name="Title" />
+                <FieldRef Name="ProjectManager" />
+                <FieldRef Name="ProjectSponsor" />
+                <FieldRef Name="ProjectExecutive" />
+                <FieldRef Name="ProjectDescription" />
+                <FieldRef Name="Department" />
+                <FieldRef Name="Tier" />
+                <FieldRef Name="SAPNum" />
+                <FieldRef Name="Discretionary" />
+                <FieldRef Name="ProgramName" />
+                <FieldRef Name="Phased" />
+                <FieldRef Name="ProjectStatus" />
+                <FieldRef Name="ProjectRank" />
+                <FieldRef Name="ProjectStage" />
+                <FieldRef Name="OrigEndDate" />
+                <FieldRef Name="EstEndDate" />
+                <FieldRef Name="ListStatus" />
+                <FieldRef Name="ApprovedCapitalBudget" />
+                <FieldRef Name="ApprovedOMBudget" />
+                <FieldRef Name="CapitalEarmark" />
+                <FieldRef Name="OMEarmark" />
+                <FieldRef Name="FYCapitalEarmark" />
+                <FieldRef Name="AACompleted" />
+                <FieldRef Name="AACompletionDate" />
+                <FieldRef Name="ProjectSiteUrl" />
+                <FieldRef Name="RequireStatusReport" />
+                <FieldRef Name="EstStartDate" />
+                <FieldRef Name="StageGate" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{02A4D3FB-4BB7-4A42-BD91-3BE147E58377}" MobileView="TRUE" Type="HTML" DisplayName="Summary" Url="/sites/NWN/Lists/ProjectTracking/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Title" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{D9E828B2-4BAE-4090-A2A8-1D1B7B72291D}" MobileView="TRUE" Type="HTML" DisplayName="ProjectInfo" Url="/sites/NWN/Lists/ProjectTracking/ProjectInfo.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="Title" />
+                <FieldRef Name="ProjectManager" />
+                <FieldRef Name="ProjectSponsor" />
+                <FieldRef Name="ProjectExecutive" />
+                <FieldRef Name="Tier" />
+                <FieldRef Name="SAPNum" />
+                <FieldRef Name="ProjectStage" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{1EBADAAD-442A-4FB4-B2DA-DC1E92674217}" MobileView="TRUE" Type="HTML" DisplayName="In-Process" Url="/sites/NWN/Lists/ProjectTracking/InProcess.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="ProjectRank" />
+                <FieldRef Name="Title" />
+                <FieldRef Name="ProjectStage" />
+                <FieldRef Name="ApprovedCapitalBudget" />
+                <FieldRef Name="CapitalEarmark" />
+                <FieldRef Name="ProjectManager" />
+                <FieldRef Name="ProjectSponsor" />
+                <FieldRef Name="ProjectExecutive" />
+                <FieldRef Name="Tier" />
+                <FieldRef Name="StageGate" />
+                <FieldRef Name="EstEndDate" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{7114F2C6-0B99-4065-8030-77D8EE8EE8D9}" MobileView="TRUE" Type="HTML" DisplayName="In-Closing" Url="/sites/NWN/Lists/ProjectTracking/InClosing.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Title" />
+                <FieldRef Name="SAPNum" />
+                <FieldRef Name="Department" />
+                <FieldRef Name="ProjectManager" />
+                <FieldRef Name="EstEndDate" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{DEF1ACE4-DF83-428E-967D-B21ED9E892D7}" MobileView="TRUE" Type="HTML" DisplayName="In-Queue" Url="/sites/NWN/Lists/ProjectTracking/InQueue.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Title" />
+                <FieldRef Name="ProjectManager" />
+                <FieldRef Name="ProjectSponsor" />
+                <FieldRef Name="ProjectExecutive" />
+                <FieldRef Name="Department" />
+                <FieldRef Name="ApprovedCapitalBudget" />
+                <FieldRef Name="EstStartDate" />
+                <FieldRef Name="EstEndDate" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="User" DisplayName="Project Manager" List="UserInfo" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="EMail" UserSelectionMode="PeopleOnly" UserSelectionScope="0" ID="{3af3b7ed-01cb-4301-8d94-cd659c259528}" SourceID="{c159f250-9a6c-466f-88ee-a87d8cc71078}" StaticName="ProjectManager" Name="ProjectManager" ColName="int1" RowOrdinal="0" Group="" Version="2" />
+            <Field Type="UserMulti" DisplayName="Project Sponsor" List="UserInfo" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="EMail" UserSelectionMode="PeopleOnly" UserSelectionScope="0" ID="{36e18aa9-2178-45e9-baef-58b7b3336999}" SourceID="{c159f250-9a6c-466f-88ee-a87d8cc71078}" StaticName="ProjectSponsor" Name="ProjectSponsor" ColName="int2" RowOrdinal="0" Group="" Version="3" Mult="TRUE" Sortable="FALSE" />
+            <Field Type="UserMulti" DisplayName="Project Executive" List="UserInfo" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="EMail" UserSelectionMode="PeopleOnly" UserSelectionScope="0" ID="{59a3e163-b45e-4854-a0f6-73a4cfc548e3}" SourceID="{c159f250-9a6c-466f-88ee-a87d8cc71078}" StaticName="ProjectExecutive" Name="ProjectExecutive" ColName="int3" RowOrdinal="0" Group="" Version="3" Mult="TRUE" Sortable="FALSE" />
+            <Field Name="ProjectDescription" FromBaseType="FALSE" Type="Note" DisplayName="Project Description" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="FALSE" Sortable="FALSE" ID="{62836063-1aa3-48f0-ac5f-0e7046217e5a}" Version="2" StaticName="ProjectDescription" SourceID="{{listid:Project Tracking}}" ColName="ntext2" RowOrdinal="0" RestrictedMode="TRUE" RichTextMode="Compatible" IsolateStyles="FALSE" AppendOnly="FALSE" />
+            <Field Type="Choice" DisplayName="Department" Description="Owning Department" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{b3f8ef1a-d176-4472-a86f-ab8bc3f96dce}" SourceID="{{listid:Project Tracking}}" StaticName="Department" Name="Department" ColName="nvarchar3" RowOrdinal="0">
+              <Default>Enter Choice #1</Default>
+              <CHOICES>
+                <CHOICE>Enter Choice #1</CHOICE>
+                <CHOICE>Enter Choice #2</CHOICE>
+                <CHOICE>Enter Choice #3</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Choice" DisplayName="Tier" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{23f7afa0-dbba-4371-bf7d-364afcc59838}" SourceID="{{listid:Project Tracking}}" StaticName="Tier" Name="Tier" ColName="nvarchar4" RowOrdinal="0">
+              <Default>Tier 1</Default>
+              <CHOICES>
+                <CHOICE>Tier 1</CHOICE>
+                <CHOICE>Tier 2</CHOICE>
+                <CHOICE>Tier 3</CHOICE>
+                <CHOICE>Tier 4</CHOICE>
+                <CHOICE>MSG</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Number" DisplayName="SAP Number" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Decimals="0" ID="{da502347-4a00-4fc1-8b23-387b5ceba8e3}" SourceID="{{listid:Project Tracking}}" StaticName="SAPNum" Name="SAPNum" ColName="float1" RowOrdinal="0" Percentage="FALSE" Version="3" />
+            <Field Type="Boolean" DisplayName="Discretionary" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{70d8e037-797b-4123-8368-17d6e8b36cbb}" SourceID="{{listid:Project Tracking}}" StaticName="Discretionary" Name="Discretionary" ColName="bit1" RowOrdinal="0">
+              <Default>0</Default>
+            </Field>
+            <Field Type="Text" DisplayName="Program Name" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" ID="{a40ab6c7-8580-4b17-a87d-244eb4cc5ca3}" SourceID="{{listid:Project Tracking}}" StaticName="ProgramName" Name="ProgramName" ColName="nvarchar5" RowOrdinal="0" Version="1" />
+            <Field Type="Boolean" DisplayName="Phased" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{fafd8c7c-370a-49ff-94cb-14bd1c527e65}" SourceID="{{listid:Project Tracking}}" StaticName="Phased" Name="Phased" ColName="bit2" RowOrdinal="0">
+              <Default>1</Default>
+            </Field>
+            <Field Type="Choice" DisplayName="Project Status" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{d8faf138-b49f-43c0-be2e-56f1aa4c002d}" SourceID="{{listid:Project Tracking}}" StaticName="ProjectStatus" Name="ProjectStatus" ColName="nvarchar6" RowOrdinal="0" Version="1">
+              <Default>Active</Default>
+              <CHOICES>
+                <CHOICE>Active</CHOICE>
+                <CHOICE>Inactive</CHOICE>
+                <CHOICE>On-Hold</CHOICE>
+                <CHOICE>Closing</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Number" DisplayName="Project Rank" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Decimals="0" ID="{c26129b5-c1c9-4633-b9a8-4f63d594929c}" SourceID="{{listid:Project Tracking}}" StaticName="ProjectRank" Name="ProjectRank" ColName="float2" RowOrdinal="0" Percentage="FALSE" Version="1" />
+            <Field Type="Choice" DisplayName="Project Stage" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{f1b5b8fd-e101-49d8-8182-02cbde83ba68}" SourceID="{{listid:Project Tracking}}" StaticName="ProjectStage" Name="ProjectStage" ColName="nvarchar7" RowOrdinal="0" Version="1">
+              <CHOICES>
+                <CHOICE>Defining</CHOICE>
+                <CHOICE>Planning</CHOICE>
+                <CHOICE>Execution</CHOICE>
+                <CHOICE>Closed</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="DateTime" DisplayName="Estimated Start Date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{d4409d22-3075-4f2e-9655-a6e5d3614757}" SourceID="{{listid:Project Tracking}}" StaticName="EstStartDate" Name="EstStartDate" ColName="datetime4" RowOrdinal="0" CalType="0" Version="1" />
+            <Field Type="DateTime" DisplayName="Original Estimated End Date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{68658dee-5b00-4854-a4db-350f0a750c9e}" SourceID="{{listid:Project Tracking}}" StaticName="OrigEndDate" Name="OrigEndDate" ColName="datetime1" RowOrdinal="0" CalType="0" Version="1" />
+            <Field Type="DateTime" DisplayName="Estimated End Date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{5fd1ffed-9a5b-4e95-ac1e-b7d69ebd5784}" SourceID="{{listid:Project Tracking}}" StaticName="EstEndDate" Name="EstEndDate" ColName="datetime2" RowOrdinal="0" CalType="0" Version="1" />
+            <Field Type="Choice" DisplayName="List Status" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{633e4b29-030f-4ed8-8c5d-72a040ca34e3}" SourceID="{{listid:Project Tracking}}" StaticName="ListStatus" Name="ListStatus" ColName="nvarchar8" RowOrdinal="0" Version="1">
+              <Default>In-Process</Default>
+              <CHOICES>
+                <CHOICE>In-Process</CHOICE>
+                <CHOICE>In-Queue</CHOICE>
+                <CHOICE>Backlog</CHOICE>
+              </CHOICES>
+            </Field>
+            <Field Type="Currency" DisplayName="Capital-Total Approved" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{e1ac7402-9148-42dc-a1d7-d1dde671ec89}" SourceID="{{listid:Project Tracking}}" StaticName="ApprovedCapitalBudget" Name="ApprovedCapitalBudget" ColName="float3" RowOrdinal="0" Version="2" Decimals="0" />
+            <Field Type="Currency" DisplayName="O&amp;M-Total Approved" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{ddbd1142-9192-4f76-8e40-a2db5b713cf4}" SourceID="{{listid:Project Tracking}}" StaticName="ApprovedOMBudget" Name="ApprovedOMBudget" ColName="float4" RowOrdinal="0" Version="2" Decimals="0" />
+            <Field Type="Currency" DisplayName="Total Capital Earmark" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{97015d5f-93bc-4536-b1a2-c0b2298f1303}" SourceID="{{listid:Project Tracking}}" StaticName="CapitalEarmark" Name="CapitalEarmark" ColName="float5" RowOrdinal="0" Version="2" Decimals="0" />
+            <Field Type="Currency" DisplayName="Total O&amp;M Earmark" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{671413cd-296c-4480-ae2a-7a3e94091189}" SourceID="{{listid:Project Tracking}}" StaticName="OMEarmark" Name="OMEarmark" ColName="float6" RowOrdinal="0" Version="2" Decimals="0" />
+            <Field Type="Currency" DisplayName="FY Capital Earmark" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" LCID="1033" ID="{0184fdf2-bc2f-4cbc-9182-749c1ec0bd25}" SourceID="{{listid:Project Tracking}}" StaticName="FYCapitalEarmark" Name="FYCapitalEarmark" ColName="float7" RowOrdinal="0" Version="2" Decimals="0" />
+            <Field Type="Boolean" DisplayName="AA Completed" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{011de574-d392-4265-8f38-302dadc31f1d}" SourceID="{{listid:Project Tracking}}" StaticName="AACompleted" Name="AACompleted" ColName="bit3" RowOrdinal="0" Required="FALSE" Version="1">
+              <Default>0</Default>
+            </Field>
+            <Field Type="DateTime" DisplayName="AA Completion Date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{3b6d5bdd-0583-479f-83d8-5f9907702d7c}" SourceID="{{listid:Project Tracking}}" StaticName="AACompletionDate" Name="AACompletionDate" ColName="datetime3" RowOrdinal="0" CalType="0" Version="1" />
+            <Field Type="URL" DisplayName="Project Site Url" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Hyperlink" ID="{6c4e48f6-ba4b-4b6c-9b80-f2a949570a9e}" SourceID="{{listid:Project Tracking}}" StaticName="ProjectSiteUrl" Name="ProjectSiteUrl" ColName="nvarchar9" RowOrdinal="0" ColName2="nvarchar10" RowOrdinal2="0" Version="1" />
+            <Field Type="Boolean" DisplayName="StatusReport" Description="should this project be included in the monthly status report" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{0ba378d7-d6b9-4475-86d2-7167be4b6131}" SourceID="{{listid:Project Tracking}}" StaticName="RequireStatusReport" Name="RequireStatusReport" ColName="bit4" RowOrdinal="0" Required="FALSE" Version="1">
+              <Default>1</Default>
+            </Field>
+            <Field Type="Choice" DisplayName="StageGate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{97d56280-a6c6-4403-b85a-c10be488f2c5}" SourceID="{{listid:Project Tracking}}" StaticName="StageGate" Name="StageGate" ColName="nvarchar11" RowOrdinal="0">
+              <Default>Full</Default>
+              <CHOICES>
+                <CHOICE>Full</CHOICE>
+                <CHOICE>Modified</CHOICE>
+              </CHOICES>
+            </Field>
+          </pnp:Fields>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Report Dates" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ReportDates" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{9AC86D07-ADF6-4277-A4FA-181A1B523507}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ReportDates/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+                <FieldRef Name="StartDate" />
+                <FieldRef Name="Status" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="DateTime" DisplayName="StartDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{030b0539-bfe4-45f2-982c-7ae9aa9653ae}" SourceID="{{listid:Report Dates}}" StaticName="StartDate" Name="StartDate" ColName="datetime1" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="Status" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{cfcfa884-c5bb-4833-ae06-953a6fd7e76b}" SourceID="{{listid:Report Dates}}" StaticName="Status" Name="Status" ColName="nvarchar3" RowOrdinal="0">
+              <Default>Draft</Default>
+              <CHOICES>
+                <CHOICE>Draft</CHOICE>
+                <CHOICE>Publish</CHOICE>
+              </CHOICES>
+            </Field>
+          </pnp:Fields>
+          <pnp:DataRows>
+            <pnp:DataRow>
+              <pnp:DataValue FieldName="Title">December 2018</pnp:DataValue> 
+              <pnp:DataValue FieldName="StartDate">12/1/2018 00:00:00</pnp:DataValue> 
+              <pnp:DataValue FieldName="Status">Draft</pnp:DataValue> 
+            </pnp:DataRow>
+            <pnp:DataRow>
+              <pnp:DataValue FieldName="Title">January 2019</pnp:DataValue> 
+              <pnp:DataValue FieldName="StartDate">1/1/2019 00:00:00</pnp:DataValue> 
+              <pnp:DataValue FieldName="Status">Draft</pnp:DataValue> 
+            </pnp:DataRow>
+            <pnp:DataRow>
+              <pnp:DataValue FieldName="Title">February 2019</pnp:DataValue> 
+              <pnp:DataValue FieldName="StartDate">2/1/2019 00:00:00</pnp:DataValue> 
+              <pnp:DataValue FieldName="Status">Draft</pnp:DataValue> 
+            </pnp:DataRow>
+          </pnp:DataRows>
+        </pnp:ListInstance>
+      </pnp:Lists>      
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>

@@ -1,0 +1,31 @@
+
+
+.circle { 
+    width:10px;
+    height:10px;
+    border: 2px solid #a1a1a1;
+    padding: 10px 11px;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.kpi_green { 
+    background: green;    
+}
+
+.kpi_red { 
+    background-color:red;
+}
+
+.kpi_yellow { 
+    background-color:yellow;
+}
+
+.kpi_white { 
+    background-color:white;
+}
+
+

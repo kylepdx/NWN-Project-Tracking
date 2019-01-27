@@ -1,0 +1,6 @@
+#TYPE System.Management.Automation.PSCustomObject
+"Project","Title","DisplayOrder","EstStartDate","ActualStartDate","EstEndDate","ActualEndDate","Comment"
+"North Mist Expansion Project","Design","1","8/6/2016 7:00:00 AM","10/1/2016 7:00:00 AM","5/1/2017 7:00:00 AM","3/30/2018 7:00:00 AM","Milestone #6 completed"
+"North Mist Expansion Project","Construct (Pipeline)","2","5/1/2017 7:00:00 AM","5/1/2017 7:00:00 AM","11/1/2017 7:00:00 AM","6/4/2018 7:00:00 AM","Milestone #11 completed"
+"North Mist Expansion Project","Construct (Comp. Station)","3","5/1/2017 7:00:00 AM","5/1/2017 7:00:00 AM","12/1/2017 8:00:00 AM",,
+"North Mist Expansion Project","Commision","4","1/1/2018 8:00:00 AM",,"9/1/2018 7:00:00 AM",,"In-Service"
