@@ -1,6 +1,9 @@
 ﻿
 $siteUrl = 'https://projectsdv.nwnatural.com' 
-$fileName = $PSScriptRoot +  '\ChangeOrders.csv'  
+$siteUrl = 'http://firefly.pdx.local/sites/nwn4' 
+
+
+$fileName = $PSScriptRoot +  '\ChangeOrders2.csv'  
 
 $changes = Import-Csv -Path $fileName 
 

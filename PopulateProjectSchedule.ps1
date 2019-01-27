@@ -2,6 +2,7 @@
 
 $fileName = $psScriptRoot + '\ProjectSchedule.csv'
 $siteUrl = 'https://projectsdv.nwnatural.com'  
+$siteUrl = 'http://firefly.pdx.local/sites/nwn4' 
 
 
 #
@@ -78,6 +79,7 @@ foreach ($new in $newEntries)
     
       
     $null = Set-PnPListItem -List $List -Identity $return.Id   -Values @{"Project" = $pItem.id} 
+
     $null = Set-PnPListItem -List $List -Identity $return.Id   -Values @{"DisplayOrder" =  $new.DisplayOrder}
 
     if ($new.EstStartDate -ne "") 

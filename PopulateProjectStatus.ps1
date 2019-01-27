@@ -2,6 +2,7 @@
 # Project Status 
 
 $siteUrl = 'https://projectsdv.nwnatural.com' 
+$siteUrl = 'http://firefly.pdx.local/sites/nwn5' 
 
 
 #
@@ -61,7 +62,6 @@ $statusItems |  export-csv -Path C:\temp\nwNatural\ProjectStatus.csv -Force
 #  Import 
 # 
 
-# Clear the list 
 
 
 connect-pnponline $siteUrl 
@@ -73,11 +73,19 @@ $ReportDates = get-pnpList -Identity "Lists/ReportDates"
 $list = get-pnpList -Identity "Lists/ProjectStatus" 
 $items = Get-PnPListItem -List $list   
 
+#
+# Clear the list 
+#
 foreach ($i in $items) { Remove-PnPListItem -List $list -Identity $i.Id -Force  } 
 
-$fileName = $PSScriptRoot + '\ProjectStatus.csv' 
+#
+#  Read input file 
+#
 
+$fileName = $PSScriptRoot + '\ProjectStatus.csv' 
 $newEntries = Import-Csv -Path  $fileName 
+
+
 
 foreach ($new in $newEntries) 
 {

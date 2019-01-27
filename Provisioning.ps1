@@ -1,28 +1,15 @@
 ﻿
-$siteUrl = "http://firefly.pdx.local/sites/nwn" 
-$newsiteUrl = "https://projectsdv.nwnatural.com" 
+Add-PSSnapin "*point*" 
+
+$siteUrl = "http://firefly.pdx.local/sites/nwn5" 
+#New-SPSite -Name "NWN Test" -Url $siteUrl  -Template BLANKINTERNET#0 -OwnerAlias pdx\sp_admin
 
 
-<# 
 
-# 
-#  Extract new Template 
-# 
- 
-Connect-PnPOnline $siteUrl   
+#$siteUrl = "https://projectsdv.nwnatural.com" 
 
-$a = Get-Date
-$d = $a.ToString('MMddyy')
-
-$fileName = "C:\temp\nwNatural\template_" + $d + ".xml" 
-
-Get-PnPProvisioningTemplate -Out $fileName -Force 
-
-#>  
-
-
-Connect-PnPOnline $newSiteUrl   
-write-host "Connected to " $newsiteUrl 
+Connect-PnPOnline $SiteUrl   
+write-host "Connected to " $siteUrl 
 
 
 $fileName = $psScriptRoot + "\template.xml" 
@@ -37,7 +24,17 @@ if ($ans -ne "y")
 }
 else 
 {
-    Apply-PnPProvisioningTemplate -Path $fileName 
+    #Apply-PnPProvisioningTemplate -Path $fileName  
+
+    #  Provision our Files 
+    $tempfileName = $psScriptRoot + "\jsSelectProject.js"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
+
+    $tempfileName = $psScriptRoot + "\kpi.js"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
+
+    $tempfileName = $psScriptRoot + "\pmo.css"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
 }
 
 
