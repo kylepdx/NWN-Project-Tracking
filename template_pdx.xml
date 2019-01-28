@@ -4,6 +4,26 @@
   <pnp:Templates ID="CONTAINER-NWN-Version-1">
     <pnp:ProvisioningTemplate ID="NWN-Version-1" Version="3" BaseSiteTemplate="BLANKINTERNET#0">
       <pnp:Lists>
+        <pnp:ListInstance Title="Departments" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/Departments" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{46298B47-29A6-4E9E-AE17-CB7395BACBA4}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/Departments/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+        </pnp:ListInstance>
         <pnp:ListInstance Title="Project Change Orders" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ProjectChangeOrders" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
           <pnp:ContentTypeBindings>
             <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
@@ -21,62 +41,26 @@
                 <FieldRef Name="Project" />
                 <FieldRef Name="ApprovedDate" />
                 <FieldRef Name="Description" />
-                <FieldRef Name="AdditionalBudget" />
-                <FieldRef Name="ImpactBudget" />
-                <FieldRef Name="ImpactScope" />
-                <FieldRef Name="ImpactSchedule" />
-              </ViewFields>
-              <RowLimit Paged="TRUE">30</RowLimit>
-              <JSLink>clienttemplates.js</JSLink>
-            </View>
-            <View Name="{1FE5E178-F5F7-4672-8977-838BD215D14E}" MobileView="TRUE" Type="HTML" TabularView="FALSE" DisplayName="status_View" Url="/sites/nwn4/Lists/ProjectChangeOrders/status_Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
-              <Query />
-              <ViewFields>
-                <FieldRef Name="ID" />
-                <FieldRef Name="ApprovedDate" />
-                <FieldRef Name="Title" />
-                <FieldRef Name="Description" />
-                <FieldRef Name="ImpactBudget" />
-                <FieldRef Name="ImpactSchedule" />
-                <FieldRef Name="ImpactScope" />
+                <FieldRef Name="Impact" />
                 <FieldRef Name="AdditionalBudget" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
-              <Aggregations Value="Off" />
-              <JSLink>clienttemplates.js</JSLink>
-            </View>
-            <View Name="{060C2D2D-AA59-4945-B885-CC8AAED42105}" MobileView="TRUE" Type="HTML" TabularView="FALSE" DisplayName="status_Edit" Url="/sites/nwn4/Lists/ProjectChangeOrders/status_Edit.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
-              <Query />
-              <ViewFields>
-                <FieldRef Name="Edit" />
-                <FieldRef Name="ID" />
-                <FieldRef Name="ApprovedDate" />
-                <FieldRef Name="Title" />
-                <FieldRef Name="Description" />
-                <FieldRef Name="ImpactBudget" />
-                <FieldRef Name="ImpactSchedule" />
-                <FieldRef Name="ImpactScope" />
-                <FieldRef Name="AdditionalBudget" />
-              </ViewFields>
-              <RowLimit Paged="TRUE">30</RowLimit>
-              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
           </pnp:Views>
           <pnp:Fields>
-            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" ID="{403f20f5-f67e-46d7-8404-fc64edea48a3}" SourceID="{cae62f36-f184-46f6-a0fb-81ead8e4a164}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" List="{listid:Project Tracking}" WebId="cae62f36-f184-46f6-a0fb-81ead8e4a164" RelationshipDeleteBehavior="None" Version="12" />
+            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Project Tracking}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{403f20f5-f67e-46d7-8404-fc64edea48a3}" SourceID="{ceb63330-baac-4697-b528-b5073d4fb1a7}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" />
             <Field Type="DateTime" DisplayName="ApprovedDate" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" FriendlyDisplayFormat="Disabled" ID="{1e009b0c-eb81-4585-80ae-05833cdb355b}" SourceID="{{listid:Project Change Orders}}" StaticName="ApprovedDate" Name="ApprovedDate" ColName="datetime1" RowOrdinal="0" />
             <Field Type="Text" DisplayName="Description" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" ID="{6480bb60-ac7b-4a74-ae83-a3a657b289f1}" SourceID="{{listid:Project Change Orders}}" StaticName="Description" Name="Description" ColName="nvarchar3" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="Impact" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{efdaaa97-5466-46b0-abfa-5d7a4b43e31b}" SourceID="{{listid:Project Change Orders}}" StaticName="Impact" Name="Impact" ColName="nvarchar4" RowOrdinal="0">
+              <Default>Budget</Default>
+              <CHOICES>
+                <CHOICE>Budget</CHOICE>
+                <CHOICE>Schedule</CHOICE>
+                <CHOICE>Scope</CHOICE>
+              </CHOICES>
+            </Field>
             <Field Type="Currency" DisplayName="AdditionalBudget" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Decimals="0" LCID="1033" ID="{c1311705-0674-4a4e-9cc7-984855f38042}" SourceID="{{listid:Project Change Orders}}" StaticName="AdditionalBudget" Name="AdditionalBudget" ColName="float1" RowOrdinal="0" />
-            <Field Type="Boolean" DisplayName="ImpactBudget" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{590a0a80-eced-4cdf-a9db-63655ddfaea5}" SourceID="{{listid:Project Change Orders}}" StaticName="ImpactBudget" Name="ImpactBudget" ColName="bit1" RowOrdinal="0" Required="FALSE" Version="1">
-              <Default>0</Default>
-            </Field>
-            <Field Type="Boolean" DisplayName="ImpactScope" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{fa685026-609f-44e6-916f-dfe324fc824a}" SourceID="{{listid:Project Change Orders}}" StaticName="ImpactScope" Name="ImpactScope" ColName="bit2" RowOrdinal="0">
-              <Default>0</Default>
-            </Field>
-            <Field Type="Boolean" DisplayName="ImpactSchedule" EnforceUniqueValues="FALSE" Indexed="FALSE" ID="{677bbe69-31ef-4d2e-916a-2d69cfa3dd23}" SourceID="{{listid:Project Change Orders}}" StaticName="ImpactSchedule" Name="ImpactSchedule" ColName="bit3" RowOrdinal="0">
-              <Default>0</Default>
-            </Field>
           </pnp:Fields>
           <pnp:FieldDefaults>
             <pnp:FieldDefault FieldName="Title">N/A</pnp:FieldDefault>
@@ -88,7 +72,7 @@
             <pnp:ContentTypeBinding ContentTypeID="0x0120" />
           </pnp:ContentTypeBindings>
           <pnp:Views>
-            <View Name="{3AD9808A-CFFB-4D3E-AA63-6CEE6450A940}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/ProjectSchedule/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{77346056-7AAE-46FF-8D7F-E4ACAD41CB31}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectSchedule/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />
@@ -106,12 +90,13 @@
                 <FieldRef Name="DisplayOrder" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{5DEF82E8-0B0D-400C-86CD-20B0A3228139}" MobileView="TRUE" Type="HTML" TabularView="FALSE" DisplayName="status_View" Url="/sites/nwn4/Lists/ProjectSchedule/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{749A8E08-B1D7-487F-965D-5689A8BF8A22}" MobileView="TRUE" Type="HTML" DisplayName="Summary" Url="/sites/NWN/Lists/ProjectSchedule/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
-                <FieldRef Name="Title" />
+                <FieldRef Name="LinkTitle" />
                 <FieldRef Name="EstStartDate" />
                 <FieldRef Name="EstEndDate" />
                 <FieldRef Name="ActualStartDate" />
@@ -119,22 +104,6 @@
                 <FieldRef Name="Comment" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
-              <Aggregations Value="Off" />
-              <JSLink>clienttemplates.js</JSLink>
-            </View>
-            <View Name="{07E29E07-1435-46B2-985A-D028DDA0AB07}" MobileView="TRUE" Type="HTML" TabularView="FALSE" DisplayName="status_Edit" Url="/sites/nwn4/Lists/ProjectSchedule/status_Edit.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
-              <Query />
-              <ViewFields>
-                <FieldRef Name="Edit" />
-                <FieldRef Name="Title" />
-                <FieldRef Name="EstStartDate" />
-                <FieldRef Name="EstEndDate" />
-                <FieldRef Name="ActualStartDate" />
-                <FieldRef Name="ActualEndDate" />
-                <FieldRef Name="Comment" />
-              </ViewFields>
-              <RowLimit Paged="TRUE">30</RowLimit>
-              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
           </pnp:Views>
@@ -156,7 +125,7 @@
             <pnp:ContentTypeBinding ContentTypeID="0x0120" />
           </pnp:ContentTypeBindings>
           <pnp:Views>
-            <View Name="{7688DF68-BEC0-483B-907D-A7CA0F02F343}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/ProjectStatus/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{D29859CE-492C-42A2-B9F0-26CD4386DBEE}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectStatus/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />
@@ -195,7 +164,7 @@
               <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{DD0A8B6B-775A-46AE-971E-9421E0305D39}" MobileView="TRUE" Type="HTML" DisplayName="Decisions" Url="/sites/nwn4/Lists/ProjectStatus/Decisions.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{43B3DF48-8AD6-4F88-8E08-370E9A5D3483}" MobileView="TRUE" Type="HTML" DisplayName="Decisions" Url="/sites/NWN/Lists/ProjectStatus/Decisions.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Decisions" />
@@ -203,7 +172,7 @@
               <RowLimit Paged="TRUE">30</RowLimit>
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{E6474E5C-632F-4F39-85A3-AA2E48AB99A3}" MobileView="TRUE" Type="HTML" DisplayName="Issues" Url="/sites/nwn4/Lists/ProjectStatus/Issues.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{6C4D804C-0C15-4F09-9C58-FEE04C7A0BF9}" MobileView="TRUE" Type="HTML" DisplayName="Issues" Url="/sites/NWN/Lists/ProjectStatus/Issues.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Issues" />
@@ -211,7 +180,7 @@
               <RowLimit Paged="TRUE">1</RowLimit>
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{499F1628-90AE-4E9A-AB6E-DEC85176B295}" MobileView="TRUE" Type="HTML" DisplayName="Accomplishments" Url="/sites/nwn4/Lists/ProjectStatus/Accomplishments.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{8409EC16-2007-4992-8FE1-8D5F7295EB30}" MobileView="TRUE" Type="HTML" DisplayName="Accomplishments" Url="/sites/NWN/Lists/ProjectStatus/Accomplishments.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Accomplishments" />
@@ -219,7 +188,7 @@
               <RowLimit Paged="TRUE">1</RowLimit>
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{D618ED9B-636F-4F50-9A8F-555E0D337E04}" MobileView="TRUE" Type="HTML" DisplayName="KPI" Url="/sites/nwn4/Lists/ProjectStatus/KPI.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{AA5950A9-26D1-404D-AF62-133E6B24FD0B}" MobileView="TRUE" Type="HTML" DisplayName="KPI" Url="/sites/NWN/Lists/ProjectStatus/KPI.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="KPIScope" />
@@ -229,7 +198,7 @@
               <RowLimit Paged="TRUE">30</RowLimit>
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{690E901E-7641-4CC5-AE3D-5C08526581FE}" MobileView="TRUE" Type="HTML" DisplayName="Month" Url="/sites/nwn4/Lists/ProjectStatus/Month.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{84946077-5121-481D-8ED0-93258990D2AF}" MobileView="TRUE" Type="HTML" DisplayName="Month" Url="/sites/NWN/Lists/ProjectStatus/Month.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="KPIScope" />
@@ -307,7 +276,7 @@
             <pnp:ContentTypeBinding ContentTypeID="0x0120" />
           </pnp:ContentTypeBindings>
           <pnp:Views>
-            <View Name="{65ABD084-19CA-4398-910E-DF4D997AB1D7}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/ProjectTracking/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{F139047E-26FE-4884-9E2F-9E1FB2BFF4C3}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectTracking/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />
@@ -351,7 +320,7 @@
               <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{EB7533D0-3484-4D59-9CC0-89877C3228C2}" MobileView="TRUE" Type="HTML" DisplayName="Summary" Url="/sites/nwn4/Lists/ProjectTracking/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{02A4D3FB-4BB7-4A42-BD91-3BE147E58377}" MobileView="TRUE" Type="HTML" DisplayName="Summary" Url="/sites/NWN/Lists/ProjectTracking/Summary.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Title" />
@@ -359,7 +328,7 @@
               <RowLimit Paged="TRUE">30</RowLimit>
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{38AD7162-95C0-47AC-A7EC-A766E03AE480}" MobileView="TRUE" Type="HTML" DisplayName="ProjectInfo" Url="/sites/nwn4/Lists/ProjectTracking/ProjectInfo.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{D9E828B2-4BAE-4090-A2A8-1D1B7B72291D}" MobileView="TRUE" Type="HTML" DisplayName="ProjectInfo" Url="/sites/NWN/Lists/ProjectTracking/ProjectInfo.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />
@@ -375,9 +344,10 @@
                 <FieldRef Name="ProjectStage" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{1F18B3D7-4264-40DF-8E3A-62FD216CA3CE}" MobileView="TRUE" Type="HTML" DisplayName="In-Process" Url="/sites/nwn4/Lists/ProjectTracking/InProcess.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{1EBADAAD-442A-4FB4-B2DA-DC1E92674217}" MobileView="TRUE" Type="HTML" DisplayName="In-Process" Url="/sites/NWN/Lists/ProjectTracking/InProcess.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="ProjectRank" />
@@ -393,9 +363,10 @@
                 <FieldRef Name="EstEndDate" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{94B42EBA-B003-4E9C-BC13-C1E8A5892EA7}" MobileView="TRUE" Type="HTML" DisplayName="In-Closing" Url="/sites/nwn4/Lists/ProjectTracking/InClosing.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{7114F2C6-0B99-4065-8030-77D8EE8EE8D9}" MobileView="TRUE" Type="HTML" DisplayName="In-Closing" Url="/sites/NWN/Lists/ProjectTracking/InClosing.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Title" />
@@ -405,9 +376,10 @@
                 <FieldRef Name="EstEndDate" />
               </ViewFields>
               <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
               <JSLink>clienttemplates.js</JSLink>
             </View>
-            <View Name="{BFF339AD-D55E-452A-A111-DF6F93C801FE}" MobileView="TRUE" Type="HTML" DisplayName="In-Queue" Url="/sites/nwn4/Lists/ProjectTracking/InQueue.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{DEF1ACE4-DF83-428E-967D-B21ED9E892D7}" MobileView="TRUE" Type="HTML" DisplayName="In-Queue" Url="/sites/NWN/Lists/ProjectTracking/InQueue.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query />
               <ViewFields>
                 <FieldRef Name="Title" />
@@ -525,7 +497,7 @@
             <pnp:ContentTypeBinding ContentTypeID="0x0120" />
           </pnp:ContentTypeBindings>
           <pnp:Views>
-            <View Name="{F7946E36-D9C1-48E0-B332-343700F9BB8E}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/ReportDates/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{9AC86D07-ADF6-4277-A4FA-181A1B523507}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ReportDates/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />

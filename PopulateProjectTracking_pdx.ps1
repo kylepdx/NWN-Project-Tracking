@@ -1,13 +1,5 @@
-﻿cls 
-# 
-#  run under PowerShell x86 since that is where my access drivers are installed 
-# 
-
-$siteUrl = 'https://projectsdv.nwnatural.com' 
-
-
-
-$fileName = $psScriptRoot + "\2019 PMO Project Database.accdb" 
+$siteUrl = 'http://firefly.pdx.local/sites/nwn5' 
+$fileName = 'C:\Temp\NWNatural\2019 PMO Project Database.accdb'  
 $connString = "PROVIDER=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=" + $fileName + ";PERSIST SECURITY INFO=FALSE"
 
 $conn = New-Object System.Data.OleDb.OleDbConnection($ConnString)
@@ -15,8 +7,7 @@ $conn = New-Object System.Data.OleDb.OleDbConnection($ConnString)
 $cmd=$conn.CreateCommand()
 $cmd.CommandText="Select * from MasterProjInfo" 
  
-$conn.open() 
-
+$conn.open()
 
 $rdr = $cmd.ExecuteReader()
 $dt = New-Object System.Data.Datatable
@@ -26,35 +17,39 @@ $dt.Load($rdr)
 
 
 Connect-PnPOnline $siteUrl 
-$Projects = Get-PnPList -Identity "lists/ProjectTracking"    
+$Projects = Get-PnPList -Identity "lists/ProjectTracking"   
 
-$web = get-pnpWeb 
-$siteUsers = $web.SiteUsers  
-
-return 
 
 function GetEmail ($userName, $role) 
 {
 
-    $name = $username.replace('.','') + '*' 
+    #Declare any Variables
+    $orgUnit = "OU=NWNatural"
+    $dummyPassword = ConvertTo-SecureString -AsPlainText "TheBig!" -Force
 
-    $match = $siteUsers | ? {$_.Title -like $name}  
+    #Autopopulate Domain
+    $dnsDomain =gc env:USERDNSDOMAIN
+    $split = $dnsDomain.split(".")
+    if ($split[2] -ne $null) {
+	    $domain = "DC=$($split[0]),DC=$($split[1]),DC=$($split[2])"
+    } else {
+	    $domain = "DC=$($split[0]),DC=$($split[1])"
+    }
 
-    if ($match.count -eq 1) 
+    $filter = "Name -like '" + $userName + "'"    
+    
+    # get user references 
+    $adUser = get-aduser -filter $filter -Properties EmailAddress 
+
+    if ($adUser -eq $null) 
     {
-        return $match[0].Email 
+        write-host -ForegroundColor: Red  $role ":" $userName "not found"         
     }
-    elseif ($match.count -eq 0) 
-    {
-        write-host -ForegroundColor Red " " $userName " (" $role ") not found" 
-        return $null 
-    }
-    else 
-    {
-        # multiple matching rows...try with 
-        write-host "Found multiple matches"  
-        return $null 
-    }
+    
+
+
+    return $adUser 
+
 }
 
 
@@ -86,7 +81,7 @@ foreach ($row in $dt.Rows)
     # get user references 
     $adProjManager = GetEmail $row.ProjMgr "Project Manager"  
 
-   
+
     #Sponsor and Exec allow multiple selections  
 
     if ($row.ProjSpon.contains(".,"))  
@@ -110,7 +105,7 @@ foreach ($row in $dt.Rows)
         $adProjSponsor = GetEmail $row.ProjSpon "Project Sponsor" 
     }
 
-    
+
     if ($row.ProjEx.Contains(".,")) 
     {
         $execs = @() 
@@ -122,25 +117,33 @@ foreach ($row in $dt.Rows)
             $first = $k[$i+1] 
 
             $execname = $last+$first 
-            $adProjExecutive = GetEmail $execName "Executive Sponsor"  
+            $adProjExecutive = GetEmail $execName "Project Executive"  
             $execs += $adProjExecutive.EmailAddress 
             write-host -ForegroundColor Yellow "WARNING:  Not handling multiple accounts: " $execs
         }         
     }
     else 
     {
-        $adProjExecutive = Getemail $row.ProjEx  "Executive Sponsor" 
+        $adProjExecutive = Getemail $row.ProjEx  "Project Executive" 
     }
     
-     
+
+    
+    
+
+    if ($adProjManager -eq $null -or $adProjSponsor -eq $null -or $adProjExecutive -eq $null) 
+    {
+        write-host "Skipping" 
+        continue;
+    }
 
 
     $return = Add-PnPListItem -List $Projects -Values @{"Title"=$row.ProjName;} 
-    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectManager"=$adProjManager;}
-    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectSponsor"=$adProjSponsor;}
-    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ExecutiveSponsor"=$adProjExecutive;}
+    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectManager"=$adProjManager.EmailAddress;}
+    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectSponsor"=$adProjSponsor.EmailAddress;}
+    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ExecutiveSponsor"=$adProjExecutive.EmailAddress;}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectDescription"=$row.ProjDescription}
-    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Department"=$row.Dept}
+    # $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Department"=$row.Dept}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Tier"=$row.Tier}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"SAP"=$row.SAPNo} 
 
@@ -159,7 +162,7 @@ foreach ($row in $dt.Rows)
    $tempDate = CleanDate $row.EstimateEnd   
    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"EstEndDate"=$tempDate}
 
-   $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ListStatus"=$true} 
+   $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ListStatus"="In Process"} 
 
    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ApprovedCapitalBudget"=$row.TotalCapitalBudget} 
    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ApprovedOMBudget"=$row.TotalOMBudget} 
@@ -170,4 +173,5 @@ foreach ($row in $dt.Rows)
 
    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"AACompleted"=$true}
    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"AACompletionDate"='1/1/2000'}
+
 }

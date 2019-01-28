@@ -1,4 +1,4 @@
-// ~sitecollection/siteassets/jsSchedule.js
+// ~sitecollection/siteassets/jsLink/jsSchedule.js
 // 
 // jsLink that is used on the Project Tracker Viewform to pass in the current project ID to the New Schedule form.
 // 
