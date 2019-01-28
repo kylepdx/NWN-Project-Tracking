@@ -36,11 +36,7 @@ else
 
     #Connect again to pick up new site asset list 
     Connect-PnPOnline $SiteUrl   
-
-    #Pause to let the SiteAssets Library get created 
-    #Start-Sleep -Seconds 10 
-
-
+    
     #  Provision our Files 
     $tempfileName = $psScriptRoot + "\jslink\jsSelectProject.js"
     Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
@@ -49,6 +45,9 @@ else
     Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
 
     $tempfileName = $psScriptRoot + "\jsLink\pmo.css"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
+
+    $tempfileName = $psScriptRoot + "\jsLink\jsNotes.ps1"
     Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
 }
 
