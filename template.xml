@@ -4,13 +4,33 @@
   <pnp:Templates ID="CONTAINER-NWN-Version-1">
     <pnp:ProvisioningTemplate ID="NWN-Version-1" Version="3" BaseSiteTemplate="BLANKINTERNET#0">
       <pnp:Lists>
+        <pnp:ListInstance Title="Departments" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/Departments" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{46298B47-29A6-4E9E-AE17-CB7395BACBA4}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/Departments/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+        </pnp:ListInstance>
         <pnp:ListInstance Title="Project Change Orders" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ProjectChangeOrders" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
           <pnp:ContentTypeBindings>
             <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
             <pnp:ContentTypeBinding ContentTypeID="0x0120" />
           </pnp:ContentTypeBindings>
           <pnp:Views>
-            <View Name="{34604C2D-EB76-4706-B699-0769ED78DC9D}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/NWN/Lists/ProjectChangeOrders/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+            <View Name="{22AB1331-C9BF-40C0-8FF3-78A1BF1930D3}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwn4/Lists/ProjectChangeOrders/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
               <Query>
                 <OrderBy>
                   <FieldRef Name="ID" />
@@ -81,6 +101,52 @@
           <pnp:FieldDefaults>
             <pnp:FieldDefault FieldName="Title">N/A</pnp:FieldDefault>
           </pnp:FieldDefaults>
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Project Notes" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ProjectNotes" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x01" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{E8CA30FA-0AB4-4100-A2AB-B5617A03C066}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="All Items" Url="/sites/nwnb/Lists/ProjectNotes/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+                <FieldRef Name="Project" />
+                <FieldRef Name="Note" />
+                <FieldRef Name="NoteType" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+            <View Name="{5F7ECA2F-8240-4B18-B5C8-A10BF8EACC00}" MobileView="TRUE" Type="HTML" DisplayName="tracking_list" Url="/sites/nwnb/Lists/ProjectNotes/tracking_list.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=23">
+              <Query />
+              <ViewFields>
+                <FieldRef Name="Created" />
+                <FieldRef Name="NoteType" />
+                <FieldRef Name="Note" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field Type="Lookup" DisplayName="Project" Required="FALSE" EnforceUniqueValues="FALSE" List="{listid:Project Tracking}" ShowField="Title" UnlimitedLengthInDocumentLibrary="FALSE" RelationshipDeleteBehavior="None" ID="{97e0d95f-5dea-47a3-a944-32fd86aa4afd}" SourceID="{fd77412a-e5e1-4d1f-8a9f-eb786ebd95a6}" StaticName="Project" Name="Project" ColName="int1" RowOrdinal="0" />
+            <Field Type="Note" DisplayName="Note" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" NumLines="6" RichText="TRUE" RichTextMode="FullHtml" IsolateStyles="TRUE" Sortable="FALSE" ID="{466fe185-003e-467a-bc7c-54a3fc94e104}" SourceID="{{listid:Project Notes}}" StaticName="Note" Name="Note" ColName="ntext2" RowOrdinal="0" />
+            <Field Type="Choice" DisplayName="NoteType" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="Dropdown" FillInChoice="FALSE" ID="{768840c0-107d-4496-9215-c46eb575494f}" SourceID="{{listid:Project Notes}}" StaticName="NoteType" Name="NoteType" ColName="nvarchar3" RowOrdinal="0">
+              <Default>Misc</Default>
+              <CHOICES>
+                <CHOICE>Budget</CHOICE>
+                <CHOICE>Status</CHOICE>
+                <CHOICE>Misc</CHOICE>
+              </CHOICES>
+            </Field>
+          </pnp:Fields>
         </pnp:ListInstance>
         <pnp:ListInstance Title="Project Schedule" Description="" DocumentTemplate="" TemplateType="100" Url="Lists/ProjectSchedule" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" EnableFolderCreation="false">
           <pnp:ContentTypeBindings>
@@ -569,6 +635,17 @@
           </pnp:DataRows>
         </pnp:ListInstance>
       </pnp:Lists>      
+      <pnp:Features>
+        <pnp:SiteFeatures>
+          <pnp:Feature ID="716f0ee9-e2b0-41f0-a73c-47ed73f135de" />
+          <pnp:Feature ID="bf8b58f5-ebae-4a70-9848-622beaaf2043" />
+          <pnp:Feature ID="202afc3c-7384-4700-978d-6da3d3cce192" />
+          <pnp:Feature ID="e8389ec7-70fd-4179-a1c4-6fcb4342d7a0" />
+        </pnp:SiteFeatures>          
+        <pnp:WebFeatures>
+          <pnp:Feature ID="00bfea71-d8fe-4fec-8dad-01c19a6e4053" />
+        </pnp:WebFeatures>
+      </pnp:Features>
     </pnp:ProvisioningTemplate>
   </pnp:Templates>
 </pnp:Provisioning>

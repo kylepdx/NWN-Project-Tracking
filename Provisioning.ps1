@@ -1,8 +1,15 @@
 ﻿
 Add-PSSnapin "*point*" 
 
-$siteUrl = "http://firefly.pdx.local/sites/nwn5" 
-#New-SPSite -Name "NWN Test" -Url $siteUrl  -Template BLANKINTERNET#0 -OwnerAlias pdx\sp_admin
+$siteUrl = "http://firefly.pdx.local/sites/nwnb"  
+
+$check = get-spsite $siteUrl -ErrorAction SilentlyContinue
+
+
+if ($check -eq $null) 
+{
+    New-SPSite -Name "NWN Test" -Url $siteUrl  -Template STS#1 -OwnerAlias pdx\sp_admin
+}
 
 
 
@@ -24,17 +31,25 @@ if ($ans -ne "y")
 }
 else 
 {
-    #Apply-PnPProvisioningTemplate -Path $fileName  
+    Apply-PnPProvisioningTemplate -Path $fileName   
+
+
+    #Connect again to pick up new site asset list 
+    Connect-PnPOnline $SiteUrl   
+
+    #Pause to let the SiteAssets Library get created 
+    #Start-Sleep -Seconds 10 
+
 
     #  Provision our Files 
-    $tempfileName = $psScriptRoot + "\jsSelectProject.js"
-    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
+    $tempfileName = $psScriptRoot + "\jslink\jsSelectProject.js"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
 
-    $tempfileName = $psScriptRoot + "\kpi.js"
-    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
+    $tempfileName = $psScriptRoot + "\jslink\kpi.js"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
 
-    $tempfileName = $psScriptRoot + "\pmo.css"
-    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLinks"
+    $tempfileName = $psScriptRoot + "\jsLink\pmo.css"
+    Add-PnPFile -Path $tempFilename  -Folder "SiteAssets/jsLink"
 }
 
 

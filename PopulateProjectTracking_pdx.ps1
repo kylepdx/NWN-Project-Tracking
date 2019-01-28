@@ -1,4 +1,4 @@
-$siteUrl = 'http://firefly.pdx.local/sites/nwn5' 
+$siteUrl = 'http://firefly.pdx.local/sites/nwnb' 
 $fileName = 'C:\Temp\NWNatural\2019 PMO Project Database.accdb'  
 $connString = "PROVIDER=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=" + $fileName + ";PERSIST SECURITY INFO=FALSE"
 
