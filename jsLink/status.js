@@ -1,5 +1,5 @@
-﻿<script type="text/javascript" src="/sites/nwnb/siteassets/jslink/jquery.min.js"></script>
-<script type="text/javascript" src="/sites/nwnb/siteassets/jslink/jquery.SPServices.min.js"></script>
+﻿<script type="text/javascript" src="/siteassets/jslink/jquery.min.js"></script>
+<script type="text/javascript" src="/siteassets/jslink/jquery.SPServices.min.js"></script>
 
 
 <select id="ddReportDate"></select> 
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	
 	 $("#ddReportDate").change(function(){
          var selected = $(this).val(); 
-         alert(selected); 
+         //alert(selected); 
          var newPage = location.href.split('?')[0] + '?date=' + encodeURIComponent(selected);
          document.location.href = newPage; 
      });
@@ -52,7 +52,7 @@ $(document).ready(function() {
      
       $(xData.responseXML).SPFilterNode("z:row").each(function() {
         var liHtml = "<li>" + $(this).attr("ows_Title") + "</li>";
-        $("#tasksUL").append(liHtml);
+        // $("#tasksUL").append(liHtml);
         
         var el = document.createElement("option");
 	    el.textContent = $(this).attr("ows_Title");
@@ -72,5 +72,3 @@ $(document).ready(function() {
 
 
 </script>
-
-<ul id="tasksUL"/>
