@@ -46,7 +46,7 @@ function addQueryString(ctx)
     	// Make sure we are in List Mode  
     	if (ctx.BaseViewID != 1) {return}; 
 
-	debugger;
+	//debugger;
 
     	// Find the New link and add a query string
 	var link = document.getElementsByClassName("ms-heroCommandLink");  
