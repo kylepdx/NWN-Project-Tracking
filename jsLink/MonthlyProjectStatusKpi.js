@@ -5,7 +5,8 @@ myOverride.Templates = {};
 myOverride.OnPostRender = hideFields;  
 myOverride.Templates.Fields = { "KPIBudget": { "View" : showKPI }, 
 								"KPIScope": { "View" : showKPI }, 
-								"KPISchedule": { "View" : showKPI }								
+								"KPISchedule": { "View" : showKPI }, 
+								"LinkTitleNoMenu": { "View": handleTitle}
 							 };
 
 SPClientTemplates.TemplateManager.RegisterTemplateOverrides(myOverride); 
@@ -24,13 +25,41 @@ if (!document.getElementById(cssId))
 }
 
 
+cssId = 'hideChrome';   // you could encode the css path itself to generate id..
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = '../../siteassets/jslink/hideChrome.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+
+
+
+
+function handleTitle(ctx) 
+{
+	if (ctx.CurrentItem["KPIScope"] == "Pending" &&    
+		ctx.CurrentItem["KPIBudget"] == "Pending" &&   
+		ctx.CurrentItem["KPISchedule"] == "Pending") 
+	{
+		return "<div class='ms-rteFontSize-2 projectTitle' ><strong>" + ctx.CurrentItem.Title + "</strong></div>" ;
+	} 
+	else 
+	{ 
+		// include report=1 to signal the Nintex form to hide the page chrome 
+		return "<div class='ms-rteFontSize-2 projectTitle'> <a href='" + ctx.displayFormUrl + "&ID=" + ctx.CurrentItem.ID + "&report=1&source=" + document.location.href + "'><strong>" + ctx.CurrentItem.Title + "</strong></a></div>" ;
+	}
+}
 
 function hideFields(ctx) 
 {
-
 	["ScopeComment","BudgetComment","ScheduleComment"].forEach(function(name){  
 		var theField = document.querySelectorAll("[displayname=" + name + "]");  
-		
 		for (var f=0; f < theField.length; f++)
 		{
 			var header = document.querySelectorAll("[displayname=" + name + "]")[f].parentNode;  			
@@ -50,7 +79,7 @@ function showKPI(ctx)
     var theValue  = ctx.CurrentItem[fieldName];  
     
     //debugger; 
-    var comment = "none"; 
+    var comment = ""; 
     
     switch (fieldName) 
     {
@@ -72,6 +101,7 @@ function showKPI(ctx)
     
 	if (comment == null || comment.length == 0 || comment == "<div></div>") 
     {
+    	// no comment provided to display
     	commentDiv = ""; 
     }
     
@@ -90,9 +120,10 @@ function showKPI(ctx)
             break;  
 
         case "Green": 
+        	// don't show comments for green status
+            //return "<div class='circle kpi_green'>" + commentDiv + "</div>"; 
             return "<div class='circle kpi_green'></div>"; 
             break;  
     }
 }
-
 

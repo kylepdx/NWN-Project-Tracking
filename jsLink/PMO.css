@@ -1,4 +1,4 @@
-
+﻿
 
 .circle { 
     width:10px;
@@ -75,6 +75,15 @@
 
 
 .projectTitle {
-	
-	white-space: nowrap; 
+	width: 250px; 
+}
+
+#selectReportDate {
+	float:left; 
+	width: 300px;
+}
+
+#selectReportTier {
+	float:left; 
+	width: 200px; 
 }
