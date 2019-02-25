@@ -1,6 +1,6 @@
 ﻿# Clear List 
 
-$siteUrl = "http://firefly.pdx.local/sites/nwnTest" 
+$siteUrl = "https://projectsqa.nwnatural.com" 
 
 Connect-PnPOnline $siteUrl  
 
@@ -32,6 +32,7 @@ function ClearList ($listName)
 }
 
 
+ClearList "ProjectNotes" 
 ClearList "ProjectSchedule" 
 ClearList "ProjectChangeOrders" 
 ClearList "ProjectStatus" 

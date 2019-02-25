@@ -1,0 +1,80 @@
+﻿
+
+.circle { 
+    width:10px;
+    height:10px;
+    border: 2px solid #a1a1a1;
+    padding: 10px 11px;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;    
+    position: relative; 
+
+}
+
+.circle:hover .info{
+	visibility:visible;
+	transition-delay: 1s; 
+}
+
+
+
+
+.kpi_green { 
+    background: green;    
+}
+
+.kpi_red { 
+    background-color:red;
+}
+
+.kpi_yellow { 
+    background-color:yellow;
+}
+
+.kpi_white { 
+    background-color:white;
+}
+
+
+.info:hover {
+	visibility:visible;
+}
+
+
+.info {	
+	position:absolute; 
+	top: -5px; 
+	visibility:hidden; 
+	z-index:100;
+	background-color: white; 
+	box-shadow: 5px 5px 2px #aaa; 
+	border: 2px solid grey; 
+	padding: 8px; 
+	width: 400px; 
+	height: 200px; 
+}
+
+.info:active {
+	 visibility: hidden; 
+	 height: 0px; 
+	 width:0px; 
+	 left: -1000px; 
+	 top: -1000px; 
+}
+
+
+#draftBanner {
+	font-size: x-large; 
+	font-family:Arial, Helvetica, sans-serif; 
+	font-weight:300;  
+	display:none; 
+	margin:auto; 
+	text-align:center; 
+}
+
+
+.projectTitle {
+	
+	white-space: nowrap; 
+}

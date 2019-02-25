@@ -3,7 +3,7 @@
 #  run under PowerShell x86 since that is where my access drivers are installed 
 # 
 
-$siteUrl = 'https://projectsdv.nwnatural.com' 
+$siteUrl = 'https://projectsqa.nwnatural.com' 
 
 
 
@@ -28,10 +28,12 @@ $dt.Load($rdr)
 Connect-PnPOnline $siteUrl 
 $Projects = Get-PnPList -Identity "lists/ProjectTracking"    
 
-$web = get-pnpWeb 
+$web = get-pnpWeb -include siteusers 
 $siteUsers = $web.SiteUsers  
 
-return 
+
+$deptList = get-pnpListItem -List Departments 
+
 
 function GetEmail ($userName, $role) 
 {
@@ -140,7 +142,17 @@ foreach ($row in $dt.Rows)
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectSponsor"=$adProjSponsor;}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ExecutiveSponsor"=$adProjExecutive;}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"ProjectDescription"=$row.ProjDescription}
-    $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Department"=$row.Dept}
+    
+    # Get Dept lookup 
+    $lookupDept =   $deptList  | ? {$_.FieldValues["Title"].trim() -eq $row.Dept.trim()}  
+    if ($lookupDept -eq $null) 
+    {
+        write-host -ForegroundColor Yellow "  Department " $row.Dept " Not Found" 
+    }
+    else 
+    {
+        $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Department"=$lookupDept.ID} 
+    }
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"Tier"=$row.Tier}
     $null = Set-PnPListItem -List $Projects -Identity $return.Id  -Values @{"SAP"=$row.SAPNo} 
 
